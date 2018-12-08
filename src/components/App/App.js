@@ -4,6 +4,8 @@ import axios from 'axios';
 import './App.css';
 import Home from '../Home/Home';
 import Understanding from '../Understanding/Understanding';
+import Support from '../Support/Support';
+
 class App extends Component {
   render() {
     return (
@@ -13,7 +15,8 @@ class App extends Component {
                     <h1 className="App-title">Feedback!</h1>
                 </header>
                 <Route path="/" exact component={Home}></Route>
-                <Route path="/2" exact component={Understanding}></Route>
+                <Route path="/2" component={Understanding}></Route>
+                <Route path="/3" component={Support}></Route>
             </div>
         </Router>
       
