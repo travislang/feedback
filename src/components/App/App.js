@@ -5,6 +5,7 @@ import './App.css';
 import Home from '../Home/Home';
 import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
+import Comments from '../Comments/Comments';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
                 <Route path="/" exact component={Home}></Route>
                 <Route path="/2" component={Understanding}></Route>
                 <Route path="/3" component={Support}></Route>
+                <Route path="/4" component={Comments}></Route>
             </div>
         </Router>
       

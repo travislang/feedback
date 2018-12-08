@@ -1,32 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Support extends Component {
+class Comments extends Component {
 
     state = {
-        support: ''
+        comments: ''
     }
     handleChange = (e) => {
         this.setState({
-            support: e.target.value
+            comments: e.target.value
         })
     }
     handleClick = () => {
         this.props.dispatch({ type: 'ADD_INPUT', payload: this.state });
-        this.props.history.push('/4')
+        this.props.history.push('/')
     }
 
 
     render() {
         return (
             <div>
-                <p>How well are you being supported? </p>
-                <input type="number" onChange={this.handleChange}
-                    value={this.state.support} />
+                <p>Any comments you want to leave?</p>
+                <input type="text" onChange={this.handleChange}
+                    value={this.state.comments} />
                 <button onClick={this.handleClick}>Next</button>
             </div>
         );
     }
 }
 
-export default connect()(Support);
+export default connect()(Comments);
