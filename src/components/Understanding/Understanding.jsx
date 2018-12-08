@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Home extends Component {
+class Understanding extends Component {
 
     state = {
         understanding: ''
@@ -12,7 +12,8 @@ class Home extends Component {
         })
     }
     handleClick = () => {
-        this.props.dispatch({ type: 'ADD_INPUT', payload: this.state })
+        this.props.dispatch({ type: 'ADD_INPUT', payload: this.state });
+        this.props.history.push('/3')
     }
 
 
@@ -21,13 +22,13 @@ class Home extends Component {
 
         return (
             <div>
-                <p>How are you feeling today?</p>
+                <p>How well are you understanding the content? </p>
                 <input type="number" onChange={this.handleChange}
-                    value={this.state.feeling} />
+                    value={this.state.understanding} />
                 <button onClick={this.handleClick}>Next</button>
             </div>
         );
     }
 }
 
-export default connect()(Home);
+export default connect()(Understanding);
