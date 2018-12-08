@@ -12,7 +12,7 @@ class Support extends Component {
         })
     }
     handleClick = () => {
-        this.props.dispatch({ type: 'ADD_INPUT', payload: this.state });
+        this.props.dispatch({ type: 'ADD_INPUT', payload: this.state.support });
         this.props.history.push('/4')
     }
 

@@ -12,7 +12,7 @@ class Home extends Component {
         })
     }
     handleClick = () => {
-        this.props.dispatch({type: 'ADD_INPUT', payload: this.state});
+        this.props.dispatch({type: 'ADD_INPUT', payload: this.state.feeling});
         this.props.history.push('/2')
     }
 
