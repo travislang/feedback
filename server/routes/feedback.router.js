@@ -28,4 +28,15 @@ router.post('/', async ( req, res ) => {
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+    try {
+        await pool.query(`DELETE FROM "feedback" WHERE id=$1;`, [id]);
+        res.sendStatus(200);
+    } catch (error) {
+        console.log('Error in DELETE /feedback', error);
+        res.sendStatus(500);
+    }
+})
+
 module.exports = router;

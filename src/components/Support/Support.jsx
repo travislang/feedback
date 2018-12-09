@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Review from '../Review/Review';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 class Support extends Component {
 
