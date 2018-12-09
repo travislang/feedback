@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Review from '../Review/Review';
-import ProgressBar from '../ProgressBar/ProgressBar';
+import Header from '../Header/Header';
 
 class Support extends Component {
 
@@ -29,6 +29,7 @@ class Support extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <p>How well are you being supported? </p>
                 <input type="number" onChange={this.handleChange}
                     value={this.state.support} />

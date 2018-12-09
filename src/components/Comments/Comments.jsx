@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Review from '../Review/Review';
+import Header from '../Header/Header';
 
 class Comments extends Component {
 
@@ -21,6 +22,7 @@ class Comments extends Component {
     render() {
         return (
             <div>
+                <Header />
                 <p>Any comments you want to leave?</p>
                 <input type="text" onChange={this.handleChange}
                     value={this.state.comments} />
