@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Home extends Component {
 
     state = {
-        feeling: 0
+        feeling: ''
     }
     handleChange = (e) => {
         this.setState({
@@ -12,6 +12,13 @@ class Home extends Component {
         })
     }
     handleClick = () => {
+        if (this.state.feeling < 0 || this.state.feeling > 5 ) {
+            alert('Please enter a value between 1 & 5.');
+            this.setState({
+                feeling: ''
+            })
+            return;
+        }
         this.props.dispatch({type: 'ADD_INPUT', payload: this.state.feeling});
         this.props.history.push('/2')
     }

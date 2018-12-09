@@ -12,6 +12,13 @@ class Support extends Component {
         })
     }
     handleClick = () => {
+        if (this.state.feeling < 0 || this.state.feeling > 5) {
+            alert('Please enter a value between 1 & 5.');
+            this.setState({
+                feeling: ''
+            })
+            return;
+        }
         this.props.dispatch({ type: 'ADD_INPUT', payload: this.state.support });
         this.props.history.push('/4')
     }
