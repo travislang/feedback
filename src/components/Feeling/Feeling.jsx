@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Review from '../Review/Review';
 import { withRouter } from 'react-router-dom';
-import ProgressBar from '../ProgressBar/ProgressBar';
+import Header from '../Header/Header';
 
 class Home extends Component {
 
@@ -28,14 +28,9 @@ class Home extends Component {
 
 
     render() {
-        console.log(this.props.history.location);
-        
         return (
             <div>
-                <header className="App-header">
-                    <h1 className="App-title">Feedback!</h1>
-                </header>
-                <ProgressBar />
+                <Header />
                 <p>How are you feeling today?</p>
                 <input type="number" onChange={this.handleChange}
                     value={this.state.feeling} />
