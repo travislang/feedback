@@ -1,7 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class Review extends Component {
+    handleSubmit = () => {
+        let feedback = {
+            feeling: this.props.reduxStore.feedback[0],
+            understanding: this.props.reduxStore.feedback[1],
+            support: this.props.reduxStore.feedback[2],
+            comments: this.props.reduxStore.feedback[3]
+        }
+        axios.post('/feedback', feedback)
+        .then( res => {
+            console.log(res);
+        })
+        .catch( err => {
+            console.log( 'error in post route:', err );
+        })
+    }
+
     render() {
         let button;
         if( this.props.reduxStore.feedback.length === 4 ) {
