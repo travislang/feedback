@@ -13,7 +13,7 @@ class Comments extends Component {
     }
     handleClick = () => {
         this.props.dispatch({ type: 'ADD_INPUT', payload: this.state.comments || 'N/A'});
-        this.props.history.push('/')
+        this.props.history.push('/');
     }
 
 

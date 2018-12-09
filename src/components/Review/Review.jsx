@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 class Review extends Component {
     handleSubmit = () => {
@@ -13,6 +14,8 @@ class Review extends Component {
         axios.post('/feedback', feedback)
         .then( res => {
             console.log(res);
+            this.props.dispatch({ type: 'CLEAR_INPUTS'});
+            this.props.history.push('/success');
         })
         .catch( err => {
             console.log( 'error in post route:', err );
@@ -48,4 +51,4 @@ const mapReduxStateToProps = (reduxStore) => {
     }
 }
 
-export default connect(mapReduxStateToProps)(Review);
+export default connect(mapReduxStateToProps)(withRouter(Review));

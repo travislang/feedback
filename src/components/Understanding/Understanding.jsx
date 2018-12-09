@@ -12,7 +12,7 @@ class Understanding extends Component {
         })
     }
     handleClick = () => {
-        if (this.state.feeling < 0 || this.state.feeling > 5) {
+        if (this.state.understanding < 0 || this.state.understanding > 5) {
             alert('Please enter a value between 1 & 5.');
             this.setState({
                 feeling: ''
