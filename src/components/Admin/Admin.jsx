@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Axios from 'axios';
+import axios from 'axios';
 
 class Admin extends Component {
 
     getFeedback = () => {
-        Axios.get('/')
+        axios.get('/feedback')
         .then( res => {
+            console.log( res );
             
         }).catch( err => {
             console.log( 'error in GET route:', err );
             
         })
     }
+
+    componentDidMount() {
+        this.getFeedback();
+    }
     render() {
         return (
-
+            <p>test</p>
         );
     }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Review from '../Review/Review';
 
 class Comments extends Component {
 
@@ -24,6 +25,7 @@ class Comments extends Component {
                 <input type="text" onChange={this.handleChange}
                     value={this.state.comments} />
                 <button onClick={this.handleClick}>Next</button>
+                <Review />
             </div>
         );
     }

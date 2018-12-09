@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Review from '../Review/Review';
 
 class Understanding extends Component {
 
@@ -25,14 +26,13 @@ class Understanding extends Component {
 
 
     render() {
-        console.log(this.state);
-
         return (
             <div>
                 <p>How well are you understanding the content? </p>
                 <input type="number" onChange={this.handleChange}
                     value={this.state.understanding} />
                 <button onClick={this.handleClick}>Next</button>
+                <Review />
             </div>
         );
     }
