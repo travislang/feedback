@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Review from '../Review/Review';
-import Header from '../Header/Header';
 import ProgressBar from '../ProgressBar/ProgressBar';
 
 import PropTypes from 'prop-types';

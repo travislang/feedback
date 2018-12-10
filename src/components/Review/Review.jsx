@@ -3,6 +3,36 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+
+const styles = theme => ({
+    card: {
+        minWidth: 275,
+        margin: 40
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+});
+
 class Review extends Component {
     handleSubmit = () => {
         let feedback = {
@@ -23,22 +53,39 @@ class Review extends Component {
     }
 
     render() {
+        const { classes } = this.props;
         let button;
         if( this.props.reduxStore.feedback.length === 4 ) {
-            button = <button onClick={this.handleSubmit}>Submit</button>
+            button = <Button color='primary' variant='outlined' onClick={this.handleSubmit}>Submit</Button>
         }
         else {
-            button = <button disabled>Incomplete</button>
+            button = <Button color='secondary' variant='outlined' disabled>Incomplete</Button>
         }
         return (
-            <div>
-                <h3>Your Feedback</h3>
-                <p>feeling: {this.props.reduxStore.feedback[0]}</p>
-                <p>understanding: {this.props.reduxStore.feedback[1]}</p>
-                <p>support: {this.props.reduxStore.feedback[2]}</p>
-                <p>comments: {this.props.reduxStore.feedback[3]}</p>
-                {button}
-            </div>
+            <Card className={classes.card}>
+                <CardContent>
+                    <Typography color="primary" align='center' variant='h4' gutterBottom>
+                        Your Feedback
+                    </Typography>
+                    <Typography color="textSecondary" variant='title' gutterBottom>
+                        feeling: {this.props.reduxStore.feedback[0]}
+                    </Typography>
+                    <Typography color="textSecondary" variant='title' gutterBottom>
+                        understanding: {this.props.reduxStore.feedback[1]}
+                    </Typography>
+                    <Typography color="textSecondary" variant='title' gutterBottom>
+                        support: {this.props.reduxStore.feedback[2]}
+                    </Typography>
+                    <Typography color="textSecondary" variant='title' gutterBottom>
+                        comments: {this.props.reduxStore.feedback[3]}
+                    </Typography>
+                    <CardActions>
+                        <Grid container justify='center'>
+                            {button}
+                        </Grid>
+                    </CardActions>
+                </CardContent>
+            </Card>
         );
     }
 }
@@ -51,4 +98,8 @@ const mapReduxStateToProps = (reduxStore) => {
     }
 }
 
-export default connect(mapReduxStateToProps)(withRouter(Review));
+Review.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default connect(mapReduxStateToProps)(withRouter(withStyles(styles)(Review)));
