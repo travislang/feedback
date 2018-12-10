@@ -1,6 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+//MATERIAL-UI
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+const styles = theme => ({
+    root: {
+        width: '100%',
+        marginTop: theme.spacing.unit * 3,
+        overflowX: 'auto',
+    },
+    table: {
+        minWidth: 700,
+    },
+});
 
 class Admin extends Component {
 
@@ -35,32 +55,35 @@ class Admin extends Component {
         this.getFeedback();
     }
     render() {
+        const classes = this.props;
         const feedback = this.state.feedback.map( item => {
             return (
-                <tr key={item.id}>
-                    <td>{item.feeling}</td>
-                    <td>{item.understanding}</td>
-                    <td>{item.support}</td>
-                    <td>{item.comments}</td>
-                    <td><button onClick={ () => this.handleDelete(item.id) }>X</button></td>
-                </tr>
+                <TableRow key={item.id}>
+                    <TableCell>{item.feeling}</TableCell>
+                    <TableCell>{item.understanding}</TableCell>
+                    <TableCell>{item.support}</TableCell>
+                    <TableCell>{item.comments}</TableCell>
+                    <TableCell><button onClick={ () => this.handleDelete(item.id) }>X</button></TableCell>
+                </TableRow>
             )
         })
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feeling</th>
-                        <th>Comprehension</th>
-                        <th>Support</th>
-                        <th>Comments</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {feedback}
-                </tbody>
-            </table>
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell numeric>Feeling</TableCell>
+                            <TableCell numeric>Comprehension</TableCell>
+                            <TableCell numeric>Support</TableCell>
+                            <TableCell>Comments</TableCell>
+                            <TableCell>Delete</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {feedback}
+                    </TableBody>
+                </Table>
+            </Paper >
         );
     }
 }
@@ -70,5 +93,8 @@ const mapReduxStateToProps = (reduxStore) => {
         reduxStore
     }
 }
+Admin.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 
-export default connect(mapReduxStateToProps)(Admin);
+export default connect(mapReduxStateToProps)(withStyles(styles)(Admin));

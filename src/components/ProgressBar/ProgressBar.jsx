@@ -1,9 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
+const styles = theme => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 200,
+    },
+    dense: {
+        marginTop: 19,
+    },
+    menu: {
+        width: 200,
+    },
+    card: {
+        minWidth: 275,
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+});
 class ProgressBar extends Component {
     render() {
+        const classes = this.props;
         let page;
         switch(this.props.history.location.pathname) {
             case '/':
@@ -22,11 +52,17 @@ class ProgressBar extends Component {
                 return;
         }
         return (
-            <div>
-                <h4>Page {page} of 4</h4>
+            <div className='progress'>
+                <Typography classNames={classes.pos} variant='overline' color="secondary" >
+                    Page {page} of 4
+                    </Typography>
             </div>
         );
     }
 }
 
-export default connect()(withRouter(ProgressBar));
+ProgressBar.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default connect()(withRouter(withStyles(styles)(ProgressBar)));
